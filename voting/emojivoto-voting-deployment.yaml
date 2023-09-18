@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emojivoto-voting
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: emojivoto-voting
+  template:
+    metadata:
+      labels:
+        app: emojivoto-voting
+    spec:
+      containers:
+      - image: atbb/emojivoto-voting-svc:v11
+        name: emojivoto-voting
+        envFrom:
+          - configMapRef:
+              name: emojivoto-voting

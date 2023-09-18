@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emojivoto-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: emojivoto-web
+  template:
+    metadata:
+      labels:
+        app: emojivoto-web
+    spec:
+      containers:
+      - image: atbb/emojivoto-web:v11
+        name: emojivoto-web
+        envFrom:
+          - configMapRef:
+              name: emojivoto-web

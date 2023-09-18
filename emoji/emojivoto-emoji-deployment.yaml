@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emojivoto-emoji
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: emojivoto-emoji
+  template:
+    metadata:
+      labels:
+        app: emojivoto-emoji
+    spec:
+      containers:
+      - image: atbb/emojivoto-emoji-svc:v11
+        name: emojivoto-emoji
+        envFrom:
+          - configMapRef:
+              name: emojivoto-emoji
