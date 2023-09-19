@@ -2,16 +2,17 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-  name: emojivoto-web
+  name: grafana-web
 spec:
   ingressClassName: nginx
   rules:
-  - http:
+  - host: grafana.monitoring
+    http:
       paths:
       - backend:
           service:
-            name: emojivoto-web
+            name: loki-grafana
             port:
-              number: 8080
+              number: 80
         path: /
         pathType: Prefix
